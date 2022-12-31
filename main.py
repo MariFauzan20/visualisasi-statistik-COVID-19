@@ -1,3 +1,9 @@
+"""
+Final Project Mata Kuliah Visualisai Data IF43PILDS1
+Author : 
+ - Gerin Aryo Prasetia (1301194479)
+ - Mar`i Fauzan Rambe (1301194204)
+"""
 import pandas as pd
 
 import bokeh
