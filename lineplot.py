@@ -9,11 +9,12 @@ from datetime import datetime, timedelta
 def lineplot_tab(data):
     #Setting source
     source = ColumnDataSource(data={
-        'x': data['date'],
-        'y': data['total_cases']})
+        'x': data['Date'],
+        'y': data['Total Cases'],
+        'location': data['Location']})
 
     #Making line plot
-    plot = figure(x_axis_type = "datetime", title = 'total_cases Indonesia Covid 19', 
+    plot = figure(x_axis_type = "datetime", title = 'Total Cases Indonesia Covid 19', 
                   x_axis_label = 'Date', y_axis_label = 'Total Cases',plot_height=700,
                   plot_width=700)
 
@@ -21,9 +22,12 @@ def lineplot_tab(data):
     plot.yaxis[0].formatter = NumeralTickFormatter(format='0,0')
 
     line = plot.line(x='x', y='y', source=source, line_width=1, color='firebrick')
+    plot.circle(x='x', y='y', source=source, fill_color="white", line_color="firebrick", size=5)
+
     hover = HoverTool(
     renderers=[line],
-    tooltips=[("Date", "@x"), ("Value", "@y Cases")],
+    tooltips=[("Location", "@location"), ("Value", "@y Cases")],
+    formatters={'@x': 'datetime'},
     line_policy='nearest',
     mode='mouse')
         
@@ -59,21 +63,23 @@ def lineplot_tab(data):
 
         new_data = {
         'x': data[x],
-        'y': data[y]}
+        'y': data[y],
+        'location': data['Location']
+        }
     
         source.data = new_data
 
         plot.title.text = '%s Indonesia Covid - 19' % y
 
     y_select = Select(
-        options=['total_deaths', 'new_cases', 'total_cases', 'new_deaths'],
-        value='new_cases',
+        options=['Total Deaths', 'New Cases', 'Total Cases', 'New Deaths'],
+        value='New Cases',
         title='Cases')
     y_select.on_change('value', update_plot)
 
     x_select = Select(
         options=['Date'],
-        value='date',
+        value='Date',
         title='X Axis')
     x_select.on_change('value', update_plot)
 

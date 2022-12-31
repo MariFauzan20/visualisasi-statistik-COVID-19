@@ -11,22 +11,15 @@ from table import table_tab
 
 
 # Read dataset from file
-covid_data = pd.read_csv("./dataset/covid_19_indonesia_time_series_all.csv")
+covid_data_line = pd.read_csv("./dataset/covid_19_indonesia_time_series_all.csv")
+covid_data_table = pd.read_csv("./dataset/covid_19_indonesia_time_series_all.csv")
 
 # Preprocessing
-covid_data.columns = covid_data.columns.str.replace(" ", "_")
-covid_data.columns= covid_data.columns.str.lower()
-covid_data['date'] = pd.to_datetime(covid_data['date'], format='%m/%d/%Y')
+covid_data_line['Date'] = pd.to_datetime(covid_data_line['Date'], format='%m/%d/%Y')
 
-tab1 = lineplot_tab(covid_data)
+tab1 = lineplot_tab(covid_data_line)
+tab2 = table_tab(covid_data_table)
 
-# covid_data.groupby("date").count()
-
-tab2 = table_tab(covid_data)
 tabs = Tabs(tabs = [tab1, tab2])
 
 curdoc().add_root(tabs)
-# show(tabs)
-# output_file("final_proj.html")
-# save(tabs, "final_proj.html", title="Final")
-# show(tabs)

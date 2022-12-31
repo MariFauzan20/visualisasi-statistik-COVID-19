@@ -8,10 +8,10 @@ def table_tab(data):
     source = ColumnDataSource(data)
 
     columns = [
-        TableColumn(field='date', title='Date'),
-        TableColumn(field='new_cases', title='New Cases'),
-        TableColumn(field='total_cases', title='Total Cases'),
-        TableColumn(field='location', title='Location'),
+        TableColumn(field='Date', title='Date'),
+        TableColumn(field='New Cases', title='New Cases'),
+        TableColumn(field='Total Cases', title='Total Cases'),
+        TableColumn(field='Location', title='Location'),
         ]
     
     table = DataTable(source=source, columns=columns, width = 1000)
