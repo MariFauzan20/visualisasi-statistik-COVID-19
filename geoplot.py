@@ -2,7 +2,7 @@ from bokeh.io import curdoc
 from pyproj import Proj, transform
 import pandas as pd
 import datetime as dt
-from bokeh.models import Panel, DatePicker, Select, ColumnDataSource, ColorBar
+from bokeh.models import Panel, DatePicker, Select, ColumnDataSource, ColorBar,NumeralTickFormatter
 from bokeh.palettes import Spectral6
 from bokeh.transform import linear_cmap
 from bokeh.layouts import widgetbox, row
@@ -46,7 +46,6 @@ def geoplot():
                         ("Data", "@nama"), ("Jumlah", "@dat"), ("Province", "@province")
                         ],
             title="Covid in Indonesia")
-
     p.add_tile(cartodb)
 
     p.circle(x='x', y='y',
@@ -55,7 +54,8 @@ def geoplot():
             fill_alpha=1.0,
             source=source)
 
-    color_bar = ColorBar(color_mapper=mapper['transform'], width=8)
+    color_bar = ColorBar(color_mapper=mapper['transform'], width=8, formatter=NumeralTickFormatter(format='0,0')
+)
 
     p.add_layout(color_bar, 'right')
 
