@@ -46,11 +46,6 @@ def lineplot_tab(data):
 
         return p
 
-
-    # Create a dropdown menu with a list of options
-    menu = [("Total Cases", "total_cases"), ("New Cases", "new_cases"), ("Total Death", "total_death")]
-    dropdown = Dropdown(label="Select an option:", button_type="warning", menu=menu)
-
     def update_plot(attr, old, new):
         x = x_select.value
         y = y_select.value

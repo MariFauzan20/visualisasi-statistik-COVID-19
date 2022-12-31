@@ -32,7 +32,8 @@ def geoplot():
         'x'         : df.MercatorX,
         'y'         : df.MercatorY,
         'dat'       : df.new_cases,
-        'nama'      : nam
+        'nama'      : nam,
+        'province' : df.Province
     })
 
     mapper = linear_cmap('dat', Spectral6 , 0 , 849875)
@@ -42,7 +43,7 @@ def geoplot():
             x_range=(ind_lon1, ind_lon2), y_range=(ind_lat1, ind_lat2),
             x_axis_type="mercator", y_axis_type="mercator",
             tooltips=[
-                        ("Data", "@nama"), ("Jumlah", "@dat")
+                        ("Data", "@nama"), ("Jumlah", "@dat"), ("Province", "@province")
                         ],
             title="Covid in Indonesia")
 
@@ -67,7 +68,8 @@ def geoplot():
             'x'         : df.MercatorX,
             'y'         : df.MercatorY,
             'dat'       : df[data_select.value],
-            'nama'      : nam
+            'nama'      : nam,
+            'province' : df.Province
         }
 
     dPicker = DatePicker(
